@@ -51,7 +51,6 @@ def final_roll():
                 print('\n')
     return print(winning_player + ' wins with a score of ' + str(scores[players.index(winning_player)])), print(players), print(scores)
 
-
 add_players()
 score_keeper(10000)
 final_roll()
