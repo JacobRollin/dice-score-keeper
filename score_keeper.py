@@ -1,6 +1,3 @@
-from numbers import Number
-
-
 players_and_scores = {}
 OG_winning_player = ''
 winning_player = ''
