@@ -21,7 +21,6 @@ def score_keeper(win_value):
     i = 0
     if scores[i] < win_value:
         while i < len(players):
-            current_player = players[i]
             turn_score = input('Enter score for ' + players[i] + ': ')
             scores[i] = scores[i] + int(turn_score)
             print(players)
