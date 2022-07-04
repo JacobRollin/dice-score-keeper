@@ -4,7 +4,10 @@ winning_player = ''
 
 def add_players():
     global players_and_scores
-    num_of_players = int(input('Please input number of players: '))
+    try:
+        num_of_players = int(input('Please input number of players: '))
+    except ValueError:
+        return print('Please enter the number as a numerical value'), add_players()
     if num_of_players > 6 or num_of_players <= 1:
         return print('Please select a number of players between 2 and 6.'), add_players()
     else:
@@ -20,8 +23,12 @@ def score_keeper(win_value):
     i = 0
     for player in players_and_scores:
         turn_score = input('Enter score for {player}: '.format(player=player))
-        players_and_scores[player] = players_and_scores[player] + int(turn_score)
-        print(players_and_scores)
+        try:
+            players_and_scores[player] = players_and_scores[player] + int(turn_score)
+            print(players_and_scores)
+        except ValueError:
+            print(players_and_scores)
+            continue
         if players_and_scores[player] >= win_value:
             OG_winning_player = player
             return print('\n'), print('{player} has gone out with a score of {score}.\n'.format(player=player, score=players_and_scores[player])), print(players_and_scores)
@@ -38,7 +45,10 @@ def final_roll():
         else:
             print('{player} needs {score} to take the lead!\n'.format(player=player, score=(players_and_scores[winning_player] - players_and_scores[player]) + 50))
             final_roll_score = input('Enter score for {player}: '.format(player=player))
-            players_and_scores[player] = players_and_scores[player] + int(final_roll_score)
+            try:
+                players_and_scores[player] = players_and_scores[player] + int(final_roll_score)
+            except ValueError:
+                continue
             if players_and_scores[player] > players_and_scores[winning_player]:
                 winning_player = player
                 print('{player} is now in the lead with a score of {score}'.format(player=player, score=players_and_scores[player]))
